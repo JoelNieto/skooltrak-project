@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AuthFacade } from '@skooltrak-project/auth/store';
 
 @Component({
   selector: 'skooltrak-project-login',
@@ -7,7 +8,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPage implements OnInit {
-  constructor() {}
+  constructor(private auth: AuthFacade) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.auth.loadAll;
+  }
 }
