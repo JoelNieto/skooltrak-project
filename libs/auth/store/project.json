@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/auth/store",
+  "sourceRoot": "libs/auth/store/src",
+  "prefix": "skooltrak-project",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/auth/store"],
+      "options": {
+        "jestConfig": "libs/auth/store/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/auth/store/src/**/*.ts",
+          "libs/auth/store/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

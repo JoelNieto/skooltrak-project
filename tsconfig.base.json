@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@skooltrak-project/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@skooltrak-project/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@skooltrak-project/auth/components": [
+        "libs/auth/components/src/index.ts"
+      ],
+      "@skooltrak-project/auth/store": ["libs/auth/store/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
