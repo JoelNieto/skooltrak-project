@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { RoleTypeEnum, SchemaBase } from '@skooltrak-project/api-interfaces';
+import { RoleTypeEnum } from '@skooltrak-project/data/models';
 import { Document } from 'mongoose';
+
+import { SchemaBase } from '../../shared';
 
 export type UserDocument = User & Document;
 

@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noResolve": false,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -15,11 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@skooltrak-project/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@skooltrak-project/auth/components": [
         "libs/auth/components/src/index.ts"
       ],
-      "@skooltrak-project/auth/store": ["libs/auth/store/src/index.ts"]
+      "@skooltrak-project/auth/store": ["libs/auth/store/src/index.ts"],
+      "@skooltrak-project/data/models": ["libs/data/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

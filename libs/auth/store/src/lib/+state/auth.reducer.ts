@@ -1,23 +1,16 @@
-import { AuthAction, AuthActionTypes } from './auth.actions';
+import { createReducer, on } from '@ngrx/store';
+import { RoleGroup, User } from '@skooltrak-project/data/models';
+
+import { fromAuthActions } from './auth.actions';
 
 export const AUTH_FEATURE_KEY = 'auth';
 
-/**
- * Interface for the 'Auth' data used in
- *  - AuthState, and the reducer function
- *
- *  Note: replace if already defined in another module
- */
-export interface Entity {
-  id: string;
-  name: string;
-}
-
 export interface AuthState {
-  list: Entity[]; // list of Auth; analogous to a sql normalized table
-  selectedId?: string | number; // which Auth record has been selected
-  loaded: boolean; // has the Auth list been loaded
-  error?: any; // last none error (if any)
+  user: User | undefined;
+  role: RoleGroup | undefined;
+  accessToken?: string | undefined;
+  logged: boolean;
+  error?: any;
 }
 
 export interface AuthPartialState {
@@ -25,23 +18,20 @@ export interface AuthPartialState {
 }
 
 export const initialState: AuthState = {
-  list: [],
-  loaded: false,
+  user: undefined,
+  role: undefined,
+  accessToken: undefined,
+  logged: false,
+  error: undefined,
 };
 
-export function reducer(
-  state: AuthState = initialState,
-  action: AuthAction
-): AuthState {
-  switch (action.type) {
-    case AuthActionTypes.AuthLoaded: {
-      state = {
-        ...state,
-        list: action.payload,
-        loaded: true,
-      };
-      break;
-    }
-  }
-  return state;
-}
+export const reducer = createReducer(
+  initialState,
+  on(fromAuthActions.init, (state, { role }) => ({ ...state, role })),
+  on(fromAuthActions.loginSuccess, (state, { payload }) => ({
+    ...state,
+    accessToken: payload.access_token,
+    logged: true,
+  })),
+  on(fromAuthActions.loginFailed, (state, { error }) => ({ ...state, error }))
+);

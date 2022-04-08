@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { SchemaBase } from '@skooltrak/api-interfaces';
 import { Document } from 'mongoose';
+
+import { SchemaBase } from '../../shared';
 
 export type SchoolDocument = School & Document;
 

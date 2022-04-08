@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
-import { RoleGroup, RoleType } from '@skooltrak/api-interfaces';
+import { RoleGroup, RoleType } from '@skooltrak-project/data/models';
 import * as bcrypt from 'bcrypt';
 import * as _ from 'lodash';
 import { Model } from 'mongoose';

@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { RoleGroup } from '@skooltrak-project/data/models';
 
-import { AuthPartialState } from './auth.reducer';
-import { authQuery } from './auth.selectors';
-import { LoadAuth } from './auth.actions';
+import * as actions from './auth.actions';
+import * as selectors from './auth.selectors';
 
 @Injectable()
 export class AuthFacade {
-  loaded$ = this.store.pipe(select(authQuery.getLoaded));
-  allAuth$ = this.store.pipe(select(authQuery.getAllAuth));
-  selectedAuth$ = this.store.pipe(select(authQuery.getSelectedAuth));
+  isLogged$ = this.store.select(selectors.getLogged);
+  loggedUser$ = this.store.select(selectors.getUser);
+  roleType$ = this.store.select(selectors.getRole);
+  accessToken$ = this.store.select(selectors.getAccessToken);
 
-  constructor(private readonly store: Store<AuthPartialState>) {}
-
-  loadAll() {
-    this.store.dispatch(new LoadAuth());
+  constructor(private readonly store: Store) {}
+  test() {
+    this.store.dispatch(actions.test());
+  }
+  init(role: RoleGroup) {
+    this.store.dispatch(actions.init({ role }));
   }
 }

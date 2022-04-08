@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+@import 'bootstrap/scss/functions';
+$font-family-sans-serif: 'Nunito';
+$border-width: 0;
+
+@import 'bootstrap/scss/variables';
+$input-bg: $gray-100;
+$primary: #0a75ad;
+$success: #156b32;
+$custom-colors: (
+  'primary': $primary,
+  'success': $success,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

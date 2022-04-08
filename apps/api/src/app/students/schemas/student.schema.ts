@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Countries, GenderEnum, Relation } from '@skooltrak/api-interfaces';
+import { Countries, GenderEnum, Relation } from '@skooltrak-project/data/models';
 import * as mongoose from 'mongoose';
 
 export type StudentDocument = Student & mongoose.Document;

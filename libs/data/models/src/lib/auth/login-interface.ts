@@ -10,3 +10,7 @@ export interface Session {
   accessToken: string | undefined;
   loggedAt?: Date;
 }
+
+export interface LoginPayload {
+  access_token: string;
+}

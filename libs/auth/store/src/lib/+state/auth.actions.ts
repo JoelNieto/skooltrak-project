@@ -1,32 +1,39 @@
-import { Action } from '@ngrx/store';
-import { Entity } from './auth.reducer';
+import { createAction, props } from '@ngrx/store';
+import { Login, LoginPayload, RoleGroup } from '@skooltrak-project/data/models';
 
 export enum AuthActionTypes {
-  LoadAuth = '[Auth] Load Auth',
-  AuthLoaded = '[Auth] Auth Loaded',
-  AuthLoadError = '[Auth] Auth Load Error',
+  Init = '[AUTH] Init',
+  Test = '[AUTH] Test',
+  Login = '[AUTH] Login',
+  LoginSuccess = '[AUTH] Login Success',
+  LoginFailed = '[AUTH] Login Failed',
 }
 
-export class LoadAuth implements Action {
-  readonly type = AuthActionTypes.LoadAuth;
-}
+export const test = createAction(AuthActionTypes.Test);
 
-export class AuthLoadError implements Action {
-  readonly type = AuthActionTypes.AuthLoadError;
+export const init = createAction(
+  AuthActionTypes.Init,
+  props<{ role: RoleGroup }>()
+);
 
-  constructor(public payload: any) {}
-}
+export const login = createAction(
+  AuthActionTypes.Login,
+  props<{ request: Login }>()
+);
+export const loginSuccess = createAction(
+  AuthActionTypes.LoginSuccess,
+  props<{ payload: LoginPayload }>()
+);
 
-export class AuthLoaded implements Action {
-  readonly type = AuthActionTypes.AuthLoaded;
-
-  constructor(public payload: Entity[]) {}
-}
-
-export type AuthAction = LoadAuth | AuthLoaded | AuthLoadError;
+export const loginFailed = createAction(
+  AuthActionTypes.LoginFailed,
+  props<{ error: any }>()
+);
 
 export const fromAuthActions = {
-  LoadAuth,
-  AuthLoaded,
-  AuthLoadError,
+  init,
+  test,
+  login,
+  loginSuccess,
+  loginFailed,
 };

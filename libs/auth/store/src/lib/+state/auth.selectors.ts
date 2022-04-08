@@ -1,41 +1,31 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+
 import { AUTH_FEATURE_KEY, AuthState } from './auth.reducer';
 
 // Lookup the 'Auth' feature state managed by NgRx
 const getAuthState = createFeatureSelector<AuthState>(AUTH_FEATURE_KEY);
 
-const getLoaded = createSelector(
+export const getLogged = createSelector(
   getAuthState,
-  (state: AuthState) => state.loaded
+  (state: AuthState) => state.logged
 );
-const getError = createSelector(
+
+export const getError = createSelector(
   getAuthState,
   (state: AuthState) => state.error
 );
 
-const getAllAuth = createSelector(
+export const getRole = createSelector(
   getAuthState,
-  getLoaded,
-  (state: AuthState, isLoaded) => {
-    return isLoaded ? state.list : [];
-  }
-);
-const getSelectedId = createSelector(
-  getAuthState,
-  (state: AuthState) => state.selectedId
-);
-const getSelectedAuth = createSelector(
-  getAllAuth,
-  getSelectedId,
-  (auth, id) => {
-    const result = auth.find((it) => it['id'] === id);
-    return result ? Object.assign({}, result) : undefined;
-  }
+  (state: AuthState) => state.role
 );
 
-export const authQuery = {
-  getLoaded,
-  getError,
-  getAllAuth,
-  getSelectedAuth,
-};
+export const getUser = createSelector(
+  getAuthState,
+  (state: AuthState) => state.user
+);
+
+export const getAccessToken = createSelector(
+  getAuthState,
+  (state: AuthState) => state.accessToken
+);
