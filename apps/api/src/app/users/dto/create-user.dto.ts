@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { RoleTypeEnum } from '@skooltrak/api-interfaces';
+import { RoleTypeEnum } from '@skooltrak-project/api-interfaces';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class CreateUserDto {

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { RoleGroup } from '@skooltrak/api-interfaces';
+import { RoleGroup } from '@skooltrak-project/api-interfaces';
 import { IsNotEmpty } from 'class-validator';
 
 export class LoginDTO {

@@ -11,10 +11,9 @@ import { AuthStoreModule } from '@skooltrak-project/auth/store';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
