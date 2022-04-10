@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UiModule } from '@skooltrak-project/ui';
 
 import { LoginPage } from './login/login.page';
 
@@ -10,6 +11,8 @@ import { LoginPage } from './login/login.page';
     CommonModule,
     RouterModule.forChild([{ path: '', component: LoginPage }]),
     ReactiveFormsModule,
+    FormsModule,
+    UiModule,
   ],
   declarations: [LoginPage],
   exports: [LoginPage],

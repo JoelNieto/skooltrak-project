@@ -6,6 +6,8 @@
     "api": "apps/api",
     "auth-components": "libs/auth/components",
     "auth-store": "libs/auth/store",
-    "data-models": "libs/data/models"
+    "data-models": "libs/data/models",
+    "shared-toast-store": "libs/shared/toast-store",
+    "ui": "libs/ui"
   }
 }

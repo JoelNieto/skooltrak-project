@@ -2,7 +2,7 @@
   "projectType": "application",
   "root": "apps/admin",
   "sourceRoot": "apps/admin/src",
-  "prefix": "skooltrak-project",
+  "prefix": "skooltrak",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -16,7 +16,7 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
         "styles": ["apps/admin/src/styles.scss"],
-        "scripts": []
+        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
       },
       "configurations": {
         "production": {

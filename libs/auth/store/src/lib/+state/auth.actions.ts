@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Login, LoginPayload, RoleGroup } from '@skooltrak-project/data/models';
+import { Login, LoginPayload, PayloadUser, RoleGroup } from '@skooltrak-project/data/models';
 
 export enum AuthActionTypes {
   Init = '[AUTH] Init',
@@ -7,6 +7,8 @@ export enum AuthActionTypes {
   Login = '[AUTH] Login',
   LoginSuccess = '[AUTH] Login Success',
   LoginFailed = '[AUTH] Login Failed',
+  LoadProfile = '[AUTH] Load Profile',
+  LoadProfileSuccess = '[AUTH] Load Profile Success',
 }
 
 export const test = createAction(AuthActionTypes.Test);
@@ -30,10 +32,19 @@ export const loginFailed = createAction(
   props<{ error: any }>()
 );
 
+export const loadProfile = createAction(AuthActionTypes.LoadProfile);
+
+export const loadProfileSuccess = createAction(
+  AuthActionTypes.LoadProfileSuccess,
+  props<{ user: PayloadUser }>()
+);
+
 export const fromAuthActions = {
   init,
   test,
   login,
   loginSuccess,
   loginFailed,
+  loadProfile,
+  loadProfileSuccess,
 };

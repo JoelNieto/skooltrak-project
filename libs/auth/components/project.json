@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "libs/auth/components",
   "sourceRoot": "libs/auth/components/src",
-  "prefix": "skooltrak-project",
+  "prefix": "skooltrak",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",

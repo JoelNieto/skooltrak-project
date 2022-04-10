@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { RoleGroup, RoleType } from '@skooltrak-project/data/models';
@@ -20,7 +20,7 @@ export class AuthService {
     role: RoleGroup
   ) {
     const roles = RoleType.ROLES.filter((x) => x.group === role);
-    Logger.debug(JSON.stringify(roles), 'roles');
+
     const { username, password } = login;
     const user = await this.userModel.findOne({ username });
 
@@ -28,8 +28,6 @@ export class AuthService {
       return null;
     }
     if (await bcrypt.compare(password, user.password)) {
-      Logger.debug(user.role, 'User role');
-      Logger.debug(_.filter(roles, { name: user.role }), 'filter');
       if (!_.filter(roles, { name: user.role }).length) {
         return null;
       }

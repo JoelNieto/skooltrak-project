@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
 
@@ -16,7 +16,6 @@ import { UsersService } from './users.service';
           const schema = UserSchema;
           schema.pre<any>('save', function (next) {
             const user = this;
-            Logger.debug('user', JSON.stringify(user));
             if (this.isModified('password') || this.isNew) {
               bcrypt.genSalt(10, (saltError, salt) => {
                 if (saltError) {

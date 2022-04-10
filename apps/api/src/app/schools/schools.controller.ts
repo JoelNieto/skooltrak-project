@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Logger, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CreateSchoolDto } from './dto/create-school.dto';
@@ -12,7 +12,6 @@ export class SchoolsController {
 
   @Post()
   async create(@Body() createSchoolDto: CreateSchoolDto) {
-    Logger.debug('School', JSON.stringify(createSchoolDto));
     return await this.schoolsService.create(createSchoolDto);
   }
 

@@ -9,3 +9,5 @@ export interface User extends EntityBase {
   role: RoleTypeEnum;
   password: string;
 }
+
+export type PayloadUser = Omit<User, 'password'>;

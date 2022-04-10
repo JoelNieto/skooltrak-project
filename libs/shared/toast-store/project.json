@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/toast-store",
+  "sourceRoot": "libs/shared/toast-store/src",
+  "prefix": "skooltrak",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/toast-store"],
+      "options": {
+        "jestConfig": "libs/shared/toast-store/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/toast-store/src/**/*.ts",
+          "libs/shared/toast-store/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

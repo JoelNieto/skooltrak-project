@@ -20,7 +20,11 @@
         "libs/auth/components/src/index.ts"
       ],
       "@skooltrak-project/auth/store": ["libs/auth/store/src/index.ts"],
-      "@skooltrak-project/data/models": ["libs/data/models/src/index.ts"]
+      "@skooltrak-project/data/models": ["libs/data/models/src/index.ts"],
+      "@skooltrak-project/shared/toast-store": [
+        "libs/shared/toast-store/src/index.ts"
+      ],
+      "@skooltrak-project/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

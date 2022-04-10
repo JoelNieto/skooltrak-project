@@ -3,35 +3,43 @@
   class="vh-100 d-flex align-items-center justify-content-center row"
 >
   <div class="col-md-4 d-flex flex-column">
-    <form action="" class="card shadow">
-      <div class="card-body">
-        <h2>Login</h2>
-        <div class="form-group">
-          <label for="username"></label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            class="form-control form-control-lg"
-            placeholder="Username"
-            aria-describedby="helpId"
-          />
-          <small id="helpId" class="text-muted">Help text</small>
+    <form [formGroup]="form" (ngSubmit)="signIn()">
+      <skooltrak-card shadow="normal">
+        <div body>
+          <h2>Login</h2>
+          <div class="form-group">
+            <label for="username">Nombre de usario</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              formControlName="username"
+              class="form-control form-control-lg"
+              placeholder="Nombre de usuario"
+              aria-describedby="helpId"
+            />
+            <small id="helpId" class="text-muted"
+              >Nombre de usuario (correo o cedula)</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="password">Contrasena</label>
+            <input
+              type="password"
+              class="form-control form-control-lg"
+              name="password"
+              id="password"
+              formControlName="password"
+              placeholder="******"
+            />
+          </div>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control form-control-lg"
-            name="password"
-            id="password"
-            placeholder=""
-          />
+        <div footer class="d-grid p-2">
+          <skooltrak-button type="submit" size="lg" theme="primary"
+            >Entrar</skooltrak-button
+          >
         </div>
-      </div>
-      <div class="card-footer d-grid p-3">
-        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-      </div>
+      </skooltrak-card>
     </form>
   </div>
 </div>

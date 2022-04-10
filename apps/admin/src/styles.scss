@@ -8,12 +8,19 @@ $border-width: 0;
 $input-bg: $gray-100;
 $primary: #0a75ad;
 $success: #156b32;
+
 $custom-colors: (
+  'blue': $primary,
+);
+
+$custom-theme: (
   'primary': $primary,
   'success': $success,
 );
 
-$theme-colors: map-merge($theme-colors, $custom-colors);
-
+$theme-colors: map-merge($theme-colors, $custom-theme);
+$colors: map-merge($colors, $custom-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons';

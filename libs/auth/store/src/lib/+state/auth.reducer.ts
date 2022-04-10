@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { RoleGroup, User } from '@skooltrak-project/data/models';
+import { PayloadUser, RoleGroup } from '@skooltrak-project/data/models';
 
 import { fromAuthActions } from './auth.actions';
 
 export const AUTH_FEATURE_KEY = 'auth';
 
 export interface AuthState {
-  user: User | undefined;
+  user: PayloadUser | undefined;
   role: RoleGroup | undefined;
   accessToken?: string | undefined;
   logged: boolean;
@@ -33,5 +33,9 @@ export const reducer = createReducer(
     accessToken: payload.access_token,
     logged: true,
   })),
-  on(fromAuthActions.loginFailed, (state, { error }) => ({ ...state, error }))
+  on(fromAuthActions.loginFailed, (state, { error }) => ({ ...state, error })),
+  on(fromAuthActions.loadProfileSuccess, (state, { user }) => ({
+    ...state,
+    user,
+  }))
 );

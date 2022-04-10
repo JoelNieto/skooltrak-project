@@ -15,7 +15,7 @@ export const getError = createSelector(
   (state: AuthState) => state.error
 );
 
-export const getRole = createSelector(
+export const getRoleGroup = createSelector(
   getAuthState,
   (state: AuthState) => state.role
 );
@@ -25,7 +25,14 @@ export const getUser = createSelector(
   (state: AuthState) => state.user
 );
 
+export const getRole = createSelector(getUser, (state) => state?.role);
+
 export const getAccessToken = createSelector(
   getAuthState,
   (state: AuthState) => state.accessToken
+);
+
+export const getUserName = createSelector(
+  getUser,
+  (state) => `${state?.firstname} ${state?.lastname}`
 );

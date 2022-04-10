@@ -1,0 +1,6 @@
+.nav-link {
+  color: dimgray;
+  &.selected {
+    font-weight: bold;
+  }
+}
