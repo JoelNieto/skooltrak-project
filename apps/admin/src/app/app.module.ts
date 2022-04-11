@@ -8,6 +8,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AccessInterceptor, AuthStoreModule, SessionGuard } from '@skooltrak-project/auth/store';
+import { DataServicesModule } from '@skooltrak-project/data/services';
 import { SharedToastStoreModule } from '@skooltrak-project/shared/toast-store';
 
 import { environment } from '../environments/environment';
@@ -56,6 +57,7 @@ import { AppComponent } from './app.component';
     StoreRouterConnectingModule.forRoot(),
     AuthStoreModule,
     SharedToastStoreModule,
+    DataServicesModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AccessInterceptor, multi: true },

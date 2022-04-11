@@ -10,6 +10,7 @@ import { AuthFacade } from '@skooltrak-project/auth/store';
 })
 export class LoginPage implements OnInit {
   form!: FormGroup;
+  logging$ = this.auth.logging$;
   constructor(private auth: AuthFacade, private fb: FormBuilder) {}
 
   ngOnInit(): void {

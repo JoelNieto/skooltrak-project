@@ -1,4 +1,5 @@
 import { EntityBase } from '../api-interfaces';
+import { Subject } from './subject-interface';
 
 export interface Course extends EntityBase {
   name: string;
@@ -6,10 +7,4 @@ export interface Course extends EntityBase {
   icon: string;
   color: string;
   weeklyHours: number;
-}
-
-export interface Subject extends EntityBase {
-  name: string;
-  shortName: string;
-  code: string;
 }

@@ -1,0 +1,42 @@
+.dropdown-menu {
+  max-width: 100%;
+  min-width: 100%;
+  .form-group {
+    margin: unset;
+  }
+}
+
+.dropdown-item {
+  overflow: hidden;
+  flex-wrap: wrap;
+  .main-container {
+    flex-basis: 80%;
+    overflow: hidden;
+  }
+  div {
+    text-overflow: ellipsis;
+  }
+}
+
+.dropdown-item {
+  padding: 0.25rem 0.5rem;
+  font-weight: unset;
+  &.selected {
+    font-weight: bold;
+    color: #2a4365;
+    background-color: #e2e8f0;
+  }
+}
+
+.items-container {
+  max-height: 150px;
+  overflow: scroll;
+}
+
+.buttom-row {
+  padding: 0.25rem 0.5rem;
+}
+
+.input-container {
+  overflow-x: hidden;
+}

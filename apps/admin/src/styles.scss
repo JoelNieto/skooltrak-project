@@ -4,7 +4,7 @@
 $font-family-sans-serif: 'Nunito';
 $border-width: 0;
 
-@import 'bootstrap/scss/variables';
+@import '~bootstrap/scss/variables';
 $input-bg: $gray-100;
 $primary: #0a75ad;
 $success: #156b32;
@@ -21,6 +21,65 @@ $custom-theme: (
 $theme-colors: map-merge($theme-colors, $custom-theme);
 $colors: map-merge($colors, $custom-colors);
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
+
+@mixin button-clear-variant(
+  $color,
+  $background: opacify(rgba($color, 0.1), 0.15),
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  color: $color !important;
+  border-color: $color;
+  background-color: $background !important;
+
+  &:hover {
+    color: $color-hover;
+    background-color: $active-background;
+    border-color: $active-border;
+    font-weight: bold;
+  }
+
+  .btn-check:focus + &,
+  &:focus {
+    box-shadow: 0 0 0 $btn-focus-width rgba($color, 0.5);
+  }
+
+  .btn-check:checked + &,
+  .btn-check:active + &,
+  &:active,
+  &.active,
+  &.dropdown-toggle.show {
+    color: $active-color;
+    background-color: $active-background;
+    border-color: $active-border;
+
+    &:focus {
+      @if $enable-shadows {
+        @include box-shadow(
+          $btn-active-box-shadow,
+          0 0 0 $btn-focus-width rgba($color, 0.5)
+        );
+      } @else {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: 0 0 0 $btn-focus-width rgba($color, 0.5);
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $color;
+    background-color: transparent;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-clear-#{$color} {
+    @include button-clear-variant($value);
+  }
+}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons';

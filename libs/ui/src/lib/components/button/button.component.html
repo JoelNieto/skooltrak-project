@@ -1,0 +1,14 @@
+<button
+  [type]="type"
+  [ngClass]="[
+    'btn',
+    'btn-' + size,
+    'btn-' + (variant !== 'default' ? variant + '-' : '') + theme
+  ]"
+  [disabled]="disabled || loading"
+>
+  <ng-content *ngIf="!loading"></ng-content>
+  <ng-container *ngIf="loading"
+    ><i class="bi bi-arrow-clockwise"></i> Loading</ng-container
+  >
+</button>

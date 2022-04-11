@@ -10,7 +10,7 @@ export type Size = 'md' | 'lg' | 'sm';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  @Input() loading = false;
+  @Input() loading: boolean | null = false;
   @Input() disabled = false;
 
   constructor(
@@ -19,9 +19,9 @@ export class ButtonComponent {
     @Attribute('size') public size: Size = 'md',
     @Attribute('type') public type: 'button' | 'submit' = 'button'
   ) {
-    this.type = type ?? 'button';
     this.theme = theme ?? 'primary';
-    this.size = size ?? 'md';
     this.variant = variant ?? 'default';
+    this.size = size ?? 'md';
+    this.type = type ?? 'button';
   }
 }

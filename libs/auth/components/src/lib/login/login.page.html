@@ -35,7 +35,11 @@
           </div>
         </div>
         <div footer class="d-grid p-2">
-          <skooltrak-button type="submit" size="lg" theme="primary"
+          <skooltrak-button
+            type="submit"
+            size="lg"
+            theme="primary"
+            [loading]="logging$ | async"
             >Entrar</skooltrak-button
           >
         </div>

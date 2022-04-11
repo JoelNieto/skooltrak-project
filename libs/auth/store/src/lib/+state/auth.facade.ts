@@ -15,6 +15,8 @@ export class AuthFacade {
   userRole$ = this.store.select(selectors.getRole);
   accessToken$ = this.store.select(selectors.getAccessToken);
   userName$ = this.store.select(selectors.getUserName);
+
+  logging$ = this.store.select(selectors.getLogging);
   constructor(private readonly store: Store, private service: AuthService) {}
 
   init = (role: RoleGroup) => this.store.dispatch(actions.init({ role }));
