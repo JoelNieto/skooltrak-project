@@ -9,14 +9,14 @@ import * as selectors from './auth.selectors';
 
 @Injectable()
 export class AuthFacade {
-  isLogged$ = this.store.select(selectors.getLogged);
-  loggedUser$ = this.store.select(selectors.getUser);
-  roleType$ = this.store.select(selectors.getRoleGroup);
-  userRole$ = this.store.select(selectors.getRole);
-  accessToken$ = this.store.select(selectors.getAccessToken);
-  userName$ = this.store.select(selectors.getUserName);
+  isLogged$ = this.store.select(selectors.selectLogged);
+  loggedUser$ = this.store.select(selectors.selectUser);
+  roleType$ = this.store.select(selectors.selectRoleGroup);
+  userRole$ = this.store.select(selectors.selectRole);
+  accessToken$ = this.store.select(selectors.selectAccessToken);
+  userName$ = this.store.select(selectors.selectUserName);
 
-  logging$ = this.store.select(selectors.getLogging);
+  logging$ = this.store.select(selectors.selectLogging);
   constructor(private readonly store: Store, private service: AuthService) {}
 
   init = (role: RoleGroup) => this.store.dispatch(actions.init({ role }));
@@ -24,6 +24,8 @@ export class AuthFacade {
   login = (request: Login) => this.store.dispatch(actions.login({ request }));
 
   loadProfile = () => this.store.dispatch(actions.loadProfile());
+
+  signOut = () => this.store.dispatch(actions.signOut());
 
   _login = (req: Login) =>
     this.roleType$.pipe(

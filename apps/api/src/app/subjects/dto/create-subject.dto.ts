@@ -3,7 +3,7 @@ import { Subject } from '@skooltrak-project/data/models';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateSubjectDto
-  implements Omit<Subject, '_id' | 'createdAt' | 'updatedAt'>
+  implements Omit<Subject, '_id' | 'createdAt' | 'updatedAt' | 'parent'>
 {
   @ApiProperty({ required: true, example: 'Subject Name' })
   @IsNotEmpty()
@@ -15,7 +15,7 @@ export class CreateSubjectDto
 
   @ApiProperty({ required: false })
   @IsOptional()
-  parent?: Subject;
+  parent?: string;
 
   @ApiProperty({ required: true, example: 'ABCD-100' })
   @IsNotEmpty()

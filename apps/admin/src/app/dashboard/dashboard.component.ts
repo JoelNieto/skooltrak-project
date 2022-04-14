@@ -15,4 +15,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.auth.loadProfile();
   }
+
+  signOut = () => this.auth.signOut();
 }

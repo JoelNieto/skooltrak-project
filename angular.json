@@ -8,6 +8,8 @@
     "auth-store": "libs/auth/store",
     "data-models": "libs/data/models",
     "data-services": "libs/data/services",
+    "messaging": "libs/messaging",
+    "shared-assets": "libs/shared/assets",
     "shared-toast-store": "libs/shared/toast-store",
     "ui": "libs/ui"
   }

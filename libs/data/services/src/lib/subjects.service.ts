@@ -16,7 +16,7 @@ export class SubjectsService {
     this.http.post<Subject>('/api/subjects', subject);
 
   public update = (id: string, subject: Subject) =>
-    this.http.patch(`/api/subjects/${id}`, subject);
+    this.http.patch<Subject>(`/api/subjects/${id}`, subject);
 
   public delete = (id: string) => this.http.delete(`/api/subjects/${id}`);
 }

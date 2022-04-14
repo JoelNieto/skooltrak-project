@@ -9,8 +9,8 @@ import { AuthFacade } from './auth.facade';
 
 @Injectable()
 export class AuthEffects {
-  login$ = createEffect(() =>
-    this.actions$.pipe(
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.login),
       switchMap(({ request }) =>
         this.facade._login(request).pipe(
@@ -18,34 +18,45 @@ export class AuthEffects {
           catchError((error) => of(AuthActions.loginFailed({ error })))
         )
       )
-    )
-  );
+    );
+  });
 
   loginSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
+    () => {
+      return this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
         map(() => this.router.navigate(['/dashboard']))
-      ),
+      );
+    },
     { dispatch: false }
   );
 
-  loginSuccessToast$ = createEffect(() =>
-    this.actions$.pipe(
+  loginSuccessToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.loginSuccess),
       map(() => this.toast.successToast('Bienvenido!'))
-    )
-  );
+    );
+  });
 
-  loadProfile$ = createEffect(() =>
-    this.actions$.pipe(
+  loadProfile$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.loadProfile),
       switchMap(() =>
         this.facade
           ._loadProfile()
           .pipe(map((user) => AuthActions.loadProfileSuccess({ user })))
       )
-    )
+    );
+  });
+
+  signOut$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.signOut),
+        map(() => this.router.navigate(['/']))
+      );
+    },
+    { dispatch: false }
   );
 
   constructor(

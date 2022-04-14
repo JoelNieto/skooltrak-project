@@ -1,1 +1,15 @@
-<p>subjects works!</p>
+<div class="container">
+  <h2 class="page-title">Materias</h2>
+  <skooltrak-card shadow="normal">
+    <div body>
+      <skooltrak-table
+        [options]="table"
+        [items]="subjects$ | async"
+        [isBordered]="true"
+        (addItem)="addSubject($event)"
+        (editItem)="editSubject($event)"
+        (removeItem)="deleteSubject($event)"
+      ></skooltrak-table>
+    </div>
+  </skooltrak-card>
+</div>

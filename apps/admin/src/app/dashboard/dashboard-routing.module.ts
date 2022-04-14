@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProfileComponent } from '@skooltrak-project/auth/components';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomePage } from './home/home.page';
@@ -10,6 +11,19 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'home', component: HomePage },
+      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'studyplans',
+        loadChildren: () =>
+          import('./studyplans/studyplans.module').then(
+            (m) => m.StudyplansModule
+          ),
+      },
+      {
+        path: 'schools',
+        loadChildren: () =>
+          import('./schools/schools.module').then((m) => m.SchoolsModule),
+      },
       {
         path: 'subjects',
         loadChildren: () =>

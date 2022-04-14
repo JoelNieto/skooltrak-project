@@ -26,8 +26,11 @@ export class SubjectsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSubjectDto: UpdateSubjectDto) {
-    return this.subjectsService.update(id, updateSubjectDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateSubjectDto: UpdateSubjectDto
+  ) {
+    return await this.subjectsService.update(id, updateSubjectDto);
   }
 
   @Delete(':id')

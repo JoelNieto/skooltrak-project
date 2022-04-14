@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { UiModule } from '@skooltrak-project/ui';
 
 import { LoginPage } from './login/login.page';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { LoginPage } from './login/login.page';
     FormsModule,
     UiModule,
   ],
-  declarations: [LoginPage],
-  exports: [LoginPage],
+  declarations: [LoginPage, ProfileComponent],
+  exports: [LoginPage, ProfileComponent],
 })
 export class AuthComponentsModule {}

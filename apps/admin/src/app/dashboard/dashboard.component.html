@@ -1,14 +1,29 @@
 <div class="container-fluid">
   <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light bg-gradient">
+    <nav class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light bg-gradient">
       <div
         class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
       >
         <a
-          href="/"
-          class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none"
+          [routerLink]="['home']"
+          class="d-flex align-items-center justify-content-center pb-3 mt-md-3 text-decoration-none"
         >
-          <span class="fs-5 d-none d-sm-inline">Menu</span>
+          <img
+            id="logo"
+            src="assets/logos/skooltrak-horizontal-blue.svg"
+            class="fs-5 d-none d-sm-inline img-fluid"
+          />
+        </a>
+        <a
+          [routerLink]="['home']"
+          class="d-flex align-items-center justify-content-center pb-3 my-md-0 text-decoration-none"
+        >
+          <img
+            id="logo"
+            [style.max-height]="'40px'"
+            src="assets/logos/skooltrak-logo.svg"
+            class="fs-5 d-inline d-sm-none img-fluid"
+          />
         </a>
         <ul
           class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
@@ -20,7 +35,7 @@
               [routerLink]="['home']"
               routerLinkActive="selected"
             >
-              <i class="fs-4 me-2 bi-house text-success"></i>
+              <i class="fs-4 me-2 bi-house text-primary"></i>
               <span class="ms-1 d-none d-sm-inline">Home</span>
             </a>
           </li>
@@ -30,7 +45,7 @@
               data-bs-toggle="collapse"
               class="nav-link px-0 align-middle"
             >
-              <i class="fs-4 text-success bi-clipboard-check"></i>
+              <i class="fs-4 text-primary bi-clipboard-check"></i>
               <span class="ms-1 d-none d-sm-inline ms-2">Academic</span>
             </a>
             <ul
@@ -38,7 +53,7 @@
               id="submenu1"
               data-bs-parent="#menu"
             >
-              <li class="w-100">
+              <li>
                 <a
                   [routerLink]="['subjects']"
                   routerLinkActive="selected"
@@ -49,15 +64,20 @@
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">Item</span> 2
+                <a
+                  [routerLink]="['schools']"
+                  routerLinkActive="selected"
+                  class="nav-link px-0"
+                >
+                  <i class="fs-5 me-2 text-primary bi-building"></i
+                  ><span class="d-none d-sm-inline">Schools</span>
                 </a>
               </li>
             </ul>
           </li>
           <li>
             <a href="#" class="nav-link px-0 align-middle">
-              <i class="fs-4 me-2 bi-table text-success"></i>
+              <i class="fs-4 me-2 bi-table text-primary"></i>
               <span class="ms-1 d-none d-sm-inline">Orders</span></a
             >
           </li>
@@ -67,7 +87,7 @@
               href="#submenu2"
               class="nav-link px-0 align-middle"
             >
-              <i class="fs-4 me-2 bi-bootstrap text-success"></i>
+              <i class="fs-4 me-2 bi-bootstrap text-primary"></i>
               <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a
             >
             <ul
@@ -93,7 +113,7 @@
               data-bs-toggle="collapse"
               class="nav-link px-0 align-middle"
             >
-              <i class="fs-4 me-2 bi-grid text-success"></i>
+              <i class="fs-4 me-2 bi-grid text-primary"></i>
               <span class="ms-1 d-none d-sm-inline">Products</span>
             </a>
             <ul
@@ -125,7 +145,7 @@
           </li>
           <li>
             <a href="#" class="nav-link px-0 align-middle">
-              <i class="fs-4 me-2 bi-peopl text-successe"></i>
+              <i class="fs-4 me-2 bi-peopl text-primarye"></i>
               <span class="ms-1 d-none d-sm-inline">Customers</span>
             </a>
           </li>
@@ -146,22 +166,35 @@
               height="30"
               class="rounded-circle"
             />
-            <span class="d-none d-sm-inline mx-1">{{ userName$ | async }}</span>
+            <span class="d-none d-sm-inline ms-2 me-1">{{
+              userName$ | async
+            }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="me-2 bi-sliders text-primary"></i>Settings</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['profile']"
+                ><i class="me-2 bi-person-circle text-success"></i>Profile</a
+              >
+            </li>
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li>
+              <a class="dropdown-item" (click)="signOut()"
+                ><i class="me-2 bi-box-arrow-left text-danger"></i>Sign out</a
+              >
+            </li>
           </ul>
         </div>
       </div>
-    </div>
-    <div class="col py-3">
+    </nav>
+    <main class="col py-3">
       <router-outlet></router-outlet>
-    </div>
+    </main>
   </div>
 </div>

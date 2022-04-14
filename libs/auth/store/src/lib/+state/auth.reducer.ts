@@ -11,7 +11,7 @@ export interface AuthState {
   logging: boolean;
   accessToken?: string | undefined;
   logged: boolean;
-  error?: any;
+  error?: unknown;
 }
 
 export interface AuthPartialState {
@@ -29,21 +29,37 @@ export const initialState: AuthState = {
 
 export const reducer = createReducer(
   initialState,
-  on(fromAuthActions.init, (state, { role }) => ({ ...state, role })),
-  on(fromAuthActions.login, (state) => ({ ...state, logging: true })),
-  on(fromAuthActions.loginSuccess, (state, { payload }) => ({
-    ...state,
-    accessToken: payload.access_token,
-    logged: true,
-    logging: false,
-  })),
-  on(fromAuthActions.loginFailed, (state, { error }) => ({
-    ...state,
-    error,
-    logging: false,
-  })),
-  on(fromAuthActions.loadProfileSuccess, (state, { user }) => ({
-    ...state,
-    user,
-  }))
+  on(
+    fromAuthActions.init,
+    (state, { role }): AuthState => ({ ...state, role })
+  ),
+  on(
+    fromAuthActions.login,
+    (state): AuthState => ({ ...state, logging: true })
+  ),
+  on(
+    fromAuthActions.loginSuccess,
+    (state, { payload }): AuthState => ({
+      ...state,
+      accessToken: payload.access_token,
+      logged: true,
+      logging: false,
+    })
+  ),
+  on(
+    fromAuthActions.loginFailed,
+    (state, { error }): AuthState => ({
+      ...state,
+      error,
+      logging: false,
+    })
+  ),
+  on(
+    fromAuthActions.loadProfileSuccess,
+    (state, { user }): AuthState => ({
+      ...state,
+      user,
+    })
+  ),
+  on(fromAuthActions.signOut, (): AuthState => initialState)
 );

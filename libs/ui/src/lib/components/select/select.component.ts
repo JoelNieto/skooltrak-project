@@ -43,6 +43,7 @@ export class SelectComponent
   filterValue!: string;
   inputDisplay!: string;
   filteredItems!: any[];
+  availableItems!: any[];
   calledInside = false;
 
   @HostListener('click')
@@ -73,9 +74,13 @@ export class SelectComponent
   ngOnChanges(model: SimpleChanges): void {
     if (model['items']) {
       if (this.items) {
-        this.filteredItems = [...this.items];
+        this.availableItems = this.items.map((x) => ({
+          ...x,
+          selected: false,
+        }));
+        this.filteredItems = [...this.availableItems];
         if (this.multiple) {
-          this.items.forEach((x) => {
+          this.availableItems.forEach((x) => {
             if (
               this.currentValue &&
               this.util.filterByProperty(
@@ -91,7 +96,7 @@ export class SelectComponent
           });
         } else {
           if (this.currentValue) {
-            this.items
+            this.availableItems
               .filter(
                 (x) => x[this.objectId] === this.currentValue[this.objectId]
               )
@@ -101,7 +106,7 @@ export class SelectComponent
               });
           }
         }
-        this.items = _.sortBy(this.items, this.displayValue);
+        this.availableItems = _.sortBy(this.availableItems, this.displayValue);
       }
     }
   }
@@ -141,7 +146,7 @@ export class SelectComponent
       this.currentValue = null;
     }
 
-    this.items
+    this.availableItems
       ?.filter((x) => x.selected === true)
       .forEach((y) => (y.selected = false));
 
@@ -157,7 +162,7 @@ export class SelectComponent
         this.currentValue = this.util.removeById(this.currentValue, item.id);
       }
     } else {
-      this.items
+      this.availableItems
         ?.filter((x) => x[this.objectId] !== item[this.objectId])
         .forEach((x) => (x.selected = false));
       this.currentValue = item;
@@ -180,7 +185,7 @@ export class SelectComponent
 
   filterItems(): void {
     this.filteredItems = this.util.searchFilter(
-      this.items ?? [],
+      this.availableItems ?? [],
       [this.displayValue, this.secondaryDisplay],
       this.filterValue
     );

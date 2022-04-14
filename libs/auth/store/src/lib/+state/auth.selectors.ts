@@ -3,41 +3,41 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AUTH_FEATURE_KEY, AuthState } from './auth.reducer';
 
 // Lookup the 'Auth' feature state managed by NgRx
-const getAuthState = createFeatureSelector<AuthState>(AUTH_FEATURE_KEY);
+const selectAuthState = createFeatureSelector<AuthState>(AUTH_FEATURE_KEY);
 
-export const getLogged = createSelector(
-  getAuthState,
+export const selectLogged = createSelector(
+  selectAuthState,
   (state: AuthState) => state.logged
 );
 
-export const getError = createSelector(
-  getAuthState,
+export const selectError = createSelector(
+  selectAuthState,
   (state: AuthState) => state.error
 );
 
-export const getRoleGroup = createSelector(
-  getAuthState,
+export const selectRoleGroup = createSelector(
+  selectAuthState,
   (state: AuthState) => state.role
 );
 
-export const getUser = createSelector(
-  getAuthState,
+export const selectUser = createSelector(
+  selectAuthState,
   (state: AuthState) => state.user
 );
 
-export const getRole = createSelector(getUser, (state) => state?.role);
+export const selectRole = createSelector(selectUser, (state) => state?.role);
 
-export const getLogging = createSelector(
-  getAuthState,
+export const selectLogging = createSelector(
+  selectAuthState,
   (state) => state.logging
 );
 
-export const getAccessToken = createSelector(
-  getAuthState,
+export const selectAccessToken = createSelector(
+  selectAuthState,
   (state: AuthState) => state.accessToken
 );
 
-export const getUserName = createSelector(
-  getUser,
+export const selectUserName = createSelector(
+  selectUser,
   (state) => `${state?.firstname} ${state?.lastname}`
 );

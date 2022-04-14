@@ -1,5 +1,5 @@
 <nav class="d-flex align-items-center me-2">
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination mb-0">
     <li
       class="page-item"
       ngbTooltip="Inicio"
@@ -56,5 +56,5 @@
   >
     <option *ngFor="let val of sizes" [value]="val">{{ val }}</option>
   </select>
-  Elementos de {{ itemsCount }}
+  <span class="text-nowrap ms-2">Elementos de {{ itemsCount }}</span>
 </span>

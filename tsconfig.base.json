@@ -22,6 +22,8 @@
       "@skooltrak-project/auth/store": ["libs/auth/store/src/index.ts"],
       "@skooltrak-project/data/models": ["libs/data/models/src/index.ts"],
       "@skooltrak-project/data/services": ["libs/data/services/src/index.ts"],
+      "@skooltrak-project/messaging": ["libs/messaging/src/index.ts"],
+      "@skooltrak-project/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@skooltrak-project/shared/toast-store": [
         "libs/shared/toast-store/src/index.ts"
       ],

@@ -3,15 +3,13 @@ import { Login, LoginPayload, PayloadUser, RoleGroup } from '@skooltrak-project/
 
 export enum AuthActionTypes {
   Init = '[AUTH] Init',
-  Test = '[AUTH] Test',
   Login = '[AUTH] Login',
   LoginSuccess = '[AUTH] Login Success',
   LoginFailed = '[AUTH] Login Failed',
   LoadProfile = '[AUTH] Load Profile',
   LoadProfileSuccess = '[AUTH] Load Profile Success',
+  SignOut = '[AUTH] Sign out',
 }
-
-export const test = createAction(AuthActionTypes.Test);
 
 export const init = createAction(
   AuthActionTypes.Init,
@@ -29,7 +27,7 @@ export const loginSuccess = createAction(
 
 export const loginFailed = createAction(
   AuthActionTypes.LoginFailed,
-  props<{ error: any }>()
+  props<{ error: unknown }>()
 );
 
 export const loadProfile = createAction(AuthActionTypes.LoadProfile);
@@ -39,12 +37,14 @@ export const loadProfileSuccess = createAction(
   props<{ user: PayloadUser }>()
 );
 
+export const signOut = createAction(AuthActionTypes.SignOut);
+
 export const fromAuthActions = {
   init,
-  test,
   login,
   loginSuccess,
   loginFailed,
   loadProfile,
   loadProfileSuccess,
+  signOut,
 };

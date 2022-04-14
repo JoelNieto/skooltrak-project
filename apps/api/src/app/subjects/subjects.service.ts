@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -13,11 +13,11 @@ export class SubjectsService {
   ) {}
   async create(createSubjectDto: CreateSubjectDto) {
     const created = new this.model(createSubjectDto);
-    return await created.save();
+    return (await created.save()).populate('parent');
   }
 
   findAll() {
-    return this.model.find({}).sort('name');
+    return this.model.find({}).sort('name').populate('parent');
   }
 
   async findOne(id: string) {
@@ -28,8 +28,8 @@ export class SubjectsService {
     return found;
   }
 
-  update(id: string, dto: UpdateSubjectDto) {
-    this.model
+  async update(id: string, dto: UpdateSubjectDto) {
+    const subject = await this.model
       .findByIdAndUpdate(id, {
         $set: {
           name: dto.name,
@@ -39,8 +39,13 @@ export class SubjectsService {
           updatedAt: new Date(),
         },
       })
-      .exec();
+      .setOptions({ new: true })
+      .populate('parent');
+    if (!subject) {
+      throw new NotFoundException();
+    }
+    return subject;
   }
 
-  remove = (id: string) => this.model.findByIdAndDelete(id).exec();
+  remove = async (id: string) => await this.model.findByIdAndDelete(id);
 }

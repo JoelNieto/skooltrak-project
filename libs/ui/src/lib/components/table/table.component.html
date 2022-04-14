@@ -52,7 +52,7 @@
     <div class="table-responsive mt-3">
       <table
         class="sk-custom-table table"
-        [class.table-bordered]="isBordered"
+        [class.table-striped]="isBordered"
         [class.table-hover]="isHover"
         [ngClass]="options.style ?? ''"
         *ngIf="pagedItems"
@@ -261,6 +261,7 @@
                   ></i>
                   <div
                     ngbDropdownMenu
+                    class="shadow"
                     [attr.aria-labelledby]="item.id + '-menu'"
                   >
                     <a
@@ -515,18 +516,17 @@
         </tbody>
       </table>
     </div>
-    <div class="row justify-content-between paginator">
-      <div class="col-md-8 d-flex">
-        <ng-container *ngIf="options.pageable">
-          <skooltrak-paginator
-            [pageSize]="options.pageSize"
-            [itemsCount]="itemsCount"
-            (paginate)="setPage($event)"
-            class="d-flex"
-          ></skooltrak-paginator>
-        </ng-container>
-      </div>
-      <div class="col-md-4">
+    <div class="d-flex justify-content-between paginator">
+      <ng-container *ngIf="options.pageable">
+        <skooltrak-paginator
+          [pageSize]="options.pageSize"
+          [itemsCount]="itemsCount"
+          (paginate)="setPage($event)"
+          class="d-flex"
+        ></skooltrak-paginator>
+      </ng-container>
+
+      <div class="">
         <skooltrak-button
           *ngIf="
             options.addMethod === 'modal' &&

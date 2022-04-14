@@ -32,7 +32,8 @@ import * as pdf from './../../interfaces/pdf';
 })
 export class TableComponent implements OnChanges, DoCheck, AfterViewChecked {
   @Input() options!: TableOptions;
-  @Input() items!: any[] | null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('items') inputItems!: any[] | null;
   @Input() selectedItems: any[] = [];
   @Input() isBordered = false;
   @Input() isHover = false;
@@ -45,6 +46,7 @@ export class TableComponent implements OnChanges, DoCheck, AfterViewChecked {
   sorting = false;
   allSelected = false;
   newItem: any = {};
+  items!: any[] | undefined;
   selectedItem: any = {};
   sortColumn: string | undefined;
   sortDesc = true;
@@ -75,12 +77,12 @@ export class TableComponent implements OnChanges, DoCheck, AfterViewChecked {
   ) {}
 
   ngOnChanges(model: SimpleChanges): void {
-    if (model['items']) {
-      if (this.items) {
+    if (model['inputItems']) {
+      if (this.inputItems) {
         this.initTable();
         if (this.options.sortColumn) {
           this.filteredItems = this.util.sortBy(
-            this.items,
+            this.items!,
             this.options.sortColumn,
             this.options.sortDesc
           );
@@ -113,11 +115,14 @@ export class TableComponent implements OnChanges, DoCheck, AfterViewChecked {
     if (this.options.type === 'select') {
       this.setSelectedItems();
     }
-    this.items?.map((x, i) => (x.currentIndex = i));
     this.visibleColumns = 0;
     this.options.columns.forEach((column) => {
       if (column.type === 'object') {
         column.objectText = `text${column.name}`;
+        this.items = this.inputItems?.map((x) => ({
+          ...x,
+          [`text${column.name}`]: undefined,
+        }));
         this.items?.forEach((element) => {
           this.getObjectText(element, column);
         });
@@ -206,6 +211,7 @@ export class TableComponent implements OnChanges, DoCheck, AfterViewChecked {
     }
     const modalRef = this.modalService.open(DynamicFormComponent, {
       size: this.options.modalSize,
+      backdrop: 'static',
     });
     modalRef.result.then(
       () => {
@@ -369,7 +375,7 @@ export class TableComponent implements OnChanges, DoCheck, AfterViewChecked {
   filterItems(): void {
     this.sorting = false;
     this.filteredItems = this.util.searchFilter(
-      this.items,
+      this.items!,
       this.searchColumns,
       this.searchText
     );
@@ -431,12 +437,10 @@ export class TableComponent implements OnChanges, DoCheck, AfterViewChecked {
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.options.hasId) {
-          this.items = this.util.removeById(this.items!, item.id);
-          this.removeItem.emit(item.id);
+          this.items = this.util.removeById(this.items!, item._id);
+          this.removeItem.emit(item._id);
         } else {
-          this.items = this.items!.filter(
-            (x) => x.currentIndex !== item.currentIndex
-          );
+          this.items = this.items!.filter((x) => x._id !== item._id);
           this.removeItem.emit(item);
         }
         this.filterItems();

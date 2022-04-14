@@ -8,7 +8,7 @@ export type SubjectDocument = Subject & mongoose.Document;
 @Schema()
 export class Subject
   extends SchemaBase
-  implements Omit<Entities.Subject, '_id'>
+  implements Omit<Entities.Subject, '_id' | 'parent'>
 {
   @Prop({ type: String, required: true, unique: true })
   name: string;
@@ -16,8 +16,8 @@ export class Subject
   @Prop({ type: String, required: true, unique: true })
   shortname: string;
 
-  @Prop({ type: mongoose.Types.ObjectId, ref: 'Subject' })
-  parent?: Entities.Subject;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Subject' })
+  parent?: Subject;
 
   @Prop({ type: String, required: false, unique: true })
   code: string;

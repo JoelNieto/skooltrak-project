@@ -1,13 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 @import 'bootstrap/scss/functions';
-$font-family-sans-serif: 'Nunito';
+$font-family-sans-serif: 'Inter';
 $border-width: 0;
 
 @import '~bootstrap/scss/variables';
 $input-bg: $gray-100;
 $primary: #0a75ad;
 $success: #156b32;
+$link-color: $primary;
+$component-active-bg: $primary;
 
 $custom-colors: (
   'blue': $primary,
@@ -17,6 +20,15 @@ $custom-theme: (
   'primary': $primary,
   'success': $success,
 );
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Nunito', cursive;
+}
 
 $theme-colors: map-merge($theme-colors, $custom-theme);
 $colors: map-merge($colors, $custom-colors);
@@ -38,7 +50,6 @@ $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
     color: $color-hover;
     background-color: $active-background;
     border-color: $active-border;
-    font-weight: bold;
   }
 
   .btn-check:focus + &,

@@ -1,6 +1,11 @@
-.nav-link {
+.nav-link,
+.dropdown-toggle {
   color: dimgray;
   &.selected {
     font-weight: bold;
   }
+}
+
+#logo {
+  max-height: 150px;
 }
