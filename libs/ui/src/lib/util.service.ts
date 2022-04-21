@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as _ from 'lodash';
+import { range } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -76,7 +76,7 @@ export class UtilService {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = Math.min(startIndex + (pageSize - 1), itemsCount - 1);
 
-    const pages = _.range(startPage, endPage);
+    const pages = range(startPage, endPage);
 
     return {
       totalItems: itemsCount,

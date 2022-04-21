@@ -1,8 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import * as _ from 'lodash';
+import { sortBy } from 'lodash';
 
 import { Column } from '../../interfaces/column';
 import { RegexEnum } from '../../interfaces/regex.enum';
@@ -82,8 +92,8 @@ export class DynamicFormComponent implements OnInit {
         field.asyncList?.subscribe({
           next: (data) => {
             field.list = field.listDisplay
-              ? _.sortBy(data, field.listDisplay)
-              : _.sortBy(data, 'name');
+              ? sortBy(data, field.listDisplay)
+              : sortBy(data, 'name');
           },
           error: (err) => {
             console.error(err);

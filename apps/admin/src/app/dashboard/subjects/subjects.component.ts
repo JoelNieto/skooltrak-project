@@ -54,7 +54,6 @@ export class SubjectsComponent implements OnInit {
   }
 
   deleteSubject(id: string) {
-    console.log('id', id);
     this.facade.deleteSubject(id);
   }
 }

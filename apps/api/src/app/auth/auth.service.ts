@@ -3,7 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { RoleGroup, RoleType } from '@skooltrak-project/data/models';
 import * as bcrypt from 'bcrypt';
-import * as _ from 'lodash';
+import { filter } from 'lodash';
+
 import { Model } from 'mongoose';
 
 import { User, UserDocument } from '../users/schemas/user.schema';
@@ -28,7 +29,7 @@ export class AuthService {
       return null;
     }
     if (await bcrypt.compare(password, user.password)) {
-      if (!_.filter(roles, { name: user.role }).length) {
+      if (!filter(roles, { name: user.role }).length) {
         return null;
       }
       return user;

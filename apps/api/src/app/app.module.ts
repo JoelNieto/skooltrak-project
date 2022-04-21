@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import { AuthModule } from './auth/auth.module';
 import { CurriculumModule } from './curriculum/curriculum.module';
 import { GroupsModule } from './groups/groups.module';
+import { MessagesModule } from './messages/messages.module';
 import { SchoolsModule } from './schools/schools.module';
 import { StudentsModule } from './students/students.module';
 import { StudyplansModule } from './studyplans/studyplans.module';
@@ -30,6 +31,7 @@ import { UsersModule } from './users/users.module';
     SubjectsModule,
     TeachersModule,
     CurriculumModule,
+    MessagesModule,
   ],
 })
 export class AppModule {}

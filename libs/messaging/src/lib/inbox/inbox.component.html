@@ -1,0 +1,28 @@
+<div class="list-group">
+  <div
+    *ngFor="let message of inbox$ | async"
+    class="list-group-item d-flex justify-content-between align-items-center"
+  >
+    <div>
+      {{ message.subject }}
+      <div class="text-muted">
+        {{ message.sender.firstname }} {{ message.sender.lastname }}
+      </div>
+    </div>
+    <div>{{ message.createdAt | date: 'short' }}</div>
+  </div>
+</div>
+<ng-container
+  *ngIf="{ pagination: pagination$ | async, count: count$ | async } as state"
+>
+  <div class="d-flex justify-content-between mt-2">
+    <skooltrak-paginator
+      [pageSize]="state.pagination?.pageSize!"
+      [itemsCount]="state.count!"
+      class="d-flex"
+    ></skooltrak-paginator>
+    <skooltrak-button (click)="writeMessage()"
+      ><i class="bi-plus-circle-fill"></i> Redactar</skooltrak-button
+    >
+  </div>
+</ng-container>

@@ -13,6 +13,11 @@ const routes: Routes = [
       { path: 'home', component: HomePage },
       { path: 'profile', component: ProfileComponent },
       {
+        path: 'messages',
+        loadChildren: () =>
+          import('@skooltrak-project/messaging').then((m) => m.MessagingModule),
+      },
+      {
         path: 'studyplans',
         loadChildren: () =>
           import('./studyplans/studyplans.module').then(

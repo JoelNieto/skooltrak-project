@@ -1,0 +1,20 @@
+<div class="container">
+  <skooltrak-card>
+    <div body>
+      <h2>Messaging</h2>
+      <ul ngbNav #nav="ngbNav" class="nav-pills">
+        <li ngbNavItem>
+          <a ngbNavLink>Inbox</a>
+          <ng-template ngbNavContent>
+            <skooltrak-project-inbox></skooltrak-project-inbox>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Sent</a>
+          <ng-template ngbNavContent> </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </skooltrak-card>
+</div>

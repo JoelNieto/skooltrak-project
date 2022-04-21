@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as _ from 'lodash';
+import { sortBy } from 'lodash';
 
 import { ArrayPipe } from '../../pipes/array.pipe';
 import { UtilService } from '../../util.service';
@@ -106,7 +106,7 @@ export class SelectComponent
               });
           }
         }
-        this.availableItems = _.sortBy(this.availableItems, this.displayValue);
+        this.availableItems = sortBy(this.availableItems, this.displayValue);
       }
     }
   }
