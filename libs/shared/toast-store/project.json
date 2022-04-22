@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/shared/toast-store"],
       "options": {
-        "jestConfig": "libs/shared/toast-store/jest.config.js",
+        "jestConfig": "libs/shared/toast-store/jest.config.ts",
         "passWithNoTests": true
       }
     },

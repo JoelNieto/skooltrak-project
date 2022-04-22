@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/auth/store"],
       "options": {
-        "jestConfig": "libs/auth/store/jest.config.js",
+        "jestConfig": "libs/auth/store/jest.config.ts",
         "passWithNoTests": true
       }
     },
