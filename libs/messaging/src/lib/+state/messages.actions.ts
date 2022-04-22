@@ -1,9 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {
-  Message,
-  PaginatedInbox,
-  SendMessage,
-} from '@skooltrak-project/data/models';
+import { Inbox, Message, PaginatedInbox, PaginatedMessages, SendMessage } from '@skooltrak-project/data/models';
 
 export const init = createAction('[Messages Page] Init');
 
@@ -32,4 +28,26 @@ export const sendNewMessageSuccess = createAction(
 export const sendNewMessageFailure = createAction(
   '[Messages/API] Send New Message Failure',
   props<{ error: any }>()
+);
+
+export const loadSentMessages = createAction(
+  '[Messages/API] Load Sent Messages'
+);
+export const loadSentMessagesSuccess = createAction(
+  '[Messages/API] Load Sent Messages Success',
+  props<{ payload: PaginatedMessages }>()
+);
+export const loadSentMessagesFailure = createAction(
+  '[Messages/API] Load Sent Messages Failure',
+  props<{ error: any }>()
+);
+
+export const readInboxMessage = createAction(
+  '[Messages/API] Read Inbox Message',
+  props<{ request: Inbox }>()
+);
+
+export const loadMessage = createAction(
+  '[Messages/API] LoadMessage',
+  props<{ id: string }>()
 );

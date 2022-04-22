@@ -1,9 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { ComposeComponent } from '../compose/compose.component';
 
 @Component({
-  selector: 'skooltrak-project-messaging',
+  selector: 'skooltrak-messaging',
   templateUrl: './messaging.component.html',
   styleUrls: ['./messaging.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

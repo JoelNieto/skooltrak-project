@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MessagesFacade } from '../+state/messages.facade';
 
 @Component({
-  selector: 'skooltrak-project-inbox',
+  selector: 'skooltrak-messaging-inbox',
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.scss'],
 })

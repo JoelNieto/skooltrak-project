@@ -19,3 +19,4 @@ export interface Inbox {
 }
 
 export type PaginatedInbox = PaginatedData<Inbox>;
+export type PaginatedMessages = PaginatedData<Message>;

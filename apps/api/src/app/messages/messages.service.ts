@@ -49,6 +49,19 @@ export class MessagesService {
     return { currentPage: +currentPage, pageSize: +pageSize, count, items };
   }
 
+  async sentMessages(user: Entities.User, pagination: PaginationQuery) {
+    const { currentPage, pageSize } = pagination;
+    const query = { sender: user._id };
+    const findQuery = this.model
+      .find(query)
+      .skip(currentPage > 0 ? (currentPage - 1) * pageSize : 0)
+      .limit(pageSize)
+      .sort({ createdAt: -1 });
+    const items = await findQuery;
+    const count = await this.model.countDocuments(query);
+    return { currentPage: +currentPage, pageSize: +pageSize, count, items };
+  }
+
   async findOne(id: string) {
     const found = await this.model.findById(id);
     if (!found) {

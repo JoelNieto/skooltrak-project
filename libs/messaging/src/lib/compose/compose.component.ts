@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Quill from 'quill';
 import ImageResize from 'quill-image-resize-module';
+
 import { MessagesFacade } from '../+state/messages.facade';
 
 Quill.register('modules/imageResize', ImageResize);
 @Component({
-  selector: 'skooltrak-project-compose',
+  selector: 'skooltrak-messaging-compose',
   templateUrl: './compose.component.html',
   styleUrls: ['./compose.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

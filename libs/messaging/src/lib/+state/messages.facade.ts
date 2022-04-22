@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SendMessage } from '@skooltrak-project/data/models';
-import { MessagingService } from '../messaging.service';
 
+import { MessagingService } from '../messaging.service';
 import * as MessagesActions from './messages.actions';
 import * as MessagesSelectors from './messages.selectors';
 
@@ -14,8 +14,11 @@ export class MessagesFacade {
    */
   loaded$ = this.store.select(MessagesSelectors.selectMessagesLoaded);
   inbox$ = this.store.select(MessagesSelectors.selectInbox);
-  pagination$ = this.store.select(MessagesSelectors.selectPagination);
+  sentMessages$ = this.store.select(MessagesSelectors.selectSent);
+  pagination$ = this.store.select(MessagesSelectors.selectInboxPagination);
+  sentPagination$ = this.store.select(MessagesSelectors.selectSentPagination);
   count$ = this.store.select(MessagesSelectors.selectInboxCount);
+  sentCount$ = this.store.select(MessagesSelectors.selectSentCount);
   contacts$ = this.service.getContacts();
   constructor(
     private readonly store: Store,
@@ -28,6 +31,10 @@ export class MessagesFacade {
    */
   init() {
     this.store.dispatch(MessagesActions.init());
+  }
+
+  loadSentMessages() {
+    this.store.dispatch(MessagesActions.loadSentMessages());
   }
 
   writeMessage() {

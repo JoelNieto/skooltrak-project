@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ToastsFacade } from '@skooltrak-project/shared/toast-store';
-
 import { catchError, map, of, switchMap } from 'rxjs';
+
 import { ComposeComponent } from '../compose/compose.component';
 import { MessagingService } from '../messaging.service';
-
 import * as MessagesActions from './messages.actions';
 
 @Injectable()
@@ -52,6 +51,22 @@ export class MessagesEffects {
     return this.actions$.pipe(
       ofType(MessagesActions.sendNewMessageSuccess),
       map(() => this.toasts.successToast('Mensaje enviado exitosamente'))
+    );
+  });
+
+  loadSent$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MessagesActions.loadSentMessages),
+      switchMap(() =>
+        this.service.sentMessages().pipe(
+          map((payload) =>
+            MessagesActions.loadSentMessagesSuccess({ payload })
+          ),
+          catchError((error) =>
+            of(MessagesActions.loadSentMessagesFailure(error))
+          )
+        )
+      )
     );
   });
 

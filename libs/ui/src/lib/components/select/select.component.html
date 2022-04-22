@@ -1,12 +1,6 @@
 <div class="dropdown" [ngClass]="{ show: showDropdown }">
   <div
-    class="
-      form-control
-      d-flex
-      align-items-center
-      justify-content-between
-      input-container
-    "
+    class="form-control d-flex align-items-center justify-content-between input-container"
     (click)="toggleShow()"
   >
     <div>
@@ -15,7 +9,7 @@
     </div>
     <div><i class="bi bi-funnel" aria-hidden="true"></i></div>
   </div>
-  <div class="dropdown-menu shadow-medium" [ngClass]="{ show: showDropdown }">
+  <div class="dropdown-menu shadow" [ngClass]="{ show: showDropdown }">
     <div [hidden]="!search" class="form-group search-form mb-2 dropdown-item">
       <input
         type="text"
@@ -32,14 +26,7 @@
       <a
         *ngFor="let item of filteredItems"
         (click)="toggleItem(item)"
-        class="
-          dropdown-item
-          px-3
-          py-2
-          d-flex
-          align-items-center
-          justify-content-between
-        "
+        class="dropdown-item px-3 py-2 d-flex align-items-center justify-content-between"
         [ngClass]="{ selected: item.selected }"
       >
         <ng-container *ngIf="multiple">
@@ -86,4 +73,3 @@
     </div>
   </div>
 </div>
-

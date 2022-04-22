@@ -41,6 +41,14 @@ export class MessagesController {
     return this.messagesService.inbox(user, pagination);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiQuery({ name: 'pageSize', enum: [5, 10, 15, 20], required: true })
+  @ApiQuery({ name: 'currentPage', required: true })
+  @Get('sent')
+  getSend(@User() user: Entities.User, @Query() pagination: PaginationQuery) {
+    return this.messagesService.sentMessages(user, pagination);
+  }
+
   @Get()
   findAll() {
     return this.messagesService.findAll();
